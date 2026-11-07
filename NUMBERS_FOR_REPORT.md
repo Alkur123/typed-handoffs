@@ -27,7 +27,7 @@ Fisher two-sided (descriptive; episodes cluster agents): stuck code typed vs DET
 
 **Why object scoping loses legit work** (AMENDMENTS "E8 observation", committed 19:12): the open back-channel lets stuck agents ask for the code; they wait and never submit (stuck agents submitting: declared 6/50, typed 50/50).
 **Laundering attempts** (`RESULTS.md` "Exploratory (E8b-A1)"; metric registered after E8b seed 31, before the rest): holder writes containing the restricted code, anywhere in the store: declared-normal 52 (51 to undeclared objects, refused on read by enforce; 1 to a declared object), declared-helpful 55 (51 + 4), typed-normal 7, typed-helpful 14, all to undeclared objects.
-**The 5 code-bearing writes to declared objects** under object scoping were **accepted by the store and misaddressed** (wrong recipient), hand-traced in AMENDMENTS "E8b result note". Under typing such a write is refused by construction (`test_e8.py`); none occurred.
+**4 code-bearing writes went to declared objects** under object scoping (plus 1 to an undeclared file inside `handoff/`); all were **accepted by the store and misaddressed** (wrong recipient). Hand-traced in AMENDMENTS "E8b result note" and its correction. Under typing such a write is refused by construction (`test_e8.py`); none occurred.
 Do not write "holders obeyed the scope". The correction in AMENDMENTS says why.
 
 ## 2. Prevention without a legitimate dependency (E7, seeds 21-25)
@@ -50,13 +50,14 @@ Sources: `RESULTS.md` "HINTED" and "E7 monitors"; join baseline from `monitors.p
 
 ## 4. Latency (registered E7-A1 definition)
 Source: `results/latency.txt` (`latency.py`). Receiver submits a median **1 step** after its first incoming agent-origin read.
-| Gate reacts after | Hinted (230 agents) | E7 (87 agents) |
+| Gate reacts after | Hinted (230 agents) | E7 detect cells (97 agents) |
 |---|---|---|
 | 0 steps (inline) | 100% | 100% |
-| 1 step | 33% | 23% |
-| 2 steps | 28% | 17% |
-| 5 steps | 6% | 7% |
+| 1 step | 33% | 26% |
+| 2 steps | 28% | 20% |
+| 5 steps | 6% | 8% |
 | 10 steps | 1% | 2% |
+(Corrected 7 Nov evening: an earlier draft of this sheet showed E7 = 87 agents / 23-17-7-2%, computed before the last WATCH episode landed; the committed `results/latency.txt` is the authority.)
 (The exploratory episode-level variant in the same file is not the registered one.)
 
 ## 5. Isolation certificate (E1, real Docker, one UID per container)
@@ -81,7 +82,7 @@ Counted agent spend: gpt-6.1-sol **$45.30** (169 episodes), gpt-6-luna $0.34 (`R
 1. One model family produced all positive results; two open-weight families and luna did not coordinate (E9).
 2. The coordination is **hinted** (POSCTRL sentence to stuck agents); no-hint coordination was 0/60. Do not call it spontaneous (A3 correction).
 3. Typed channel residual capacity: overwriting a two-digit reading carries ≈ 6.5 bits per write; no agent tried to use it (0 payload overwrites with ≥ 2 values under typing), so its robustness against an encoding adversary is untested.
-4. Laundering predictions H8b/H8b′ failed; the security comparison typed vs object-scoped rests on 5 accepted-but-misaddressed writes plus the construction argument, not on observed leaks.
+4. Laundering predictions H8b/H8b′ failed; the security comparison typed vs object-scoped rests on 4 accepted-but-misaddressed writes to declared objects plus the construction argument, not on observed leaks.
 5. Enforcement holds only for channels it owns: ENF-lobby displaced 49/50 (E7); E1 found network and inode channels outside storage permissions.
 6. Fisher/Wilson tests treat agents as independent; episodes cluster agents (5 per cell).
 7. Simulated store for E3-E9; the real-kernel evidence is E1 only.
