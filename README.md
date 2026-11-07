@@ -1,3 +1,5 @@
+<p align="center"><img src="report/cover.png" width="100%" alt="Typed Handoffs: a type is a rate limit, verification is the boundary"></p>
+
 <div align="center">
 
 # Typed Handoffs

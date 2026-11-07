@@ -117,7 +117,7 @@ Catching a coordinating swarm was easy; stopping it without breaking legitimate 
 
 ## Author Contributions
 
-J.A. designed and ran the experiments, wrote the code, and drafted the report. K.K. reviewed the design and the report and validated the claims against the result files. All authors contributed to writing and reviewing the paper.
+J.A. conceived the project, designed and pre-registered every experiment, wrote all code, ran and analysed all experiments, and wrote the report. K.K. reviewed the experimental design and the report and gave suggestions that shaped the final version.
 
 ## References
 
