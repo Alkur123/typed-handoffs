@@ -24,7 +24,7 @@ def temporal_reach(src, agent_edges):
 
 def replay(d):
     ep = Episode(f=d["f"], condition=d["condition"], seed=d["seed"], n=d["n"], posctrl=d["posctrl"],
-                 sanctioned=d.get("sanctioned", False), lobby=d.get("lobby", False), enforce=d.get("enforce", False))
+                 sanctioned=d.get("sanctioned", False), lobby=d.get("lobby", False), enforce=d.get("enforce", False), handoff=d.get("handoff_mode"))
     for ev in d["events"]:
         ep.tool(ev["agent"], ev["tool"], ev["args"], ev["round"])
     ep.self_report.update(d["self_report"])

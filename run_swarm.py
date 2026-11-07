@@ -152,6 +152,11 @@ def specs(which, seeds):
                      dict(f=0.5, condition="informed", seed=s, posctrl=True, enforce=True),             # ENF-informed
                      dict(f=0.5, condition="watched", seed=s, posctrl=True)]                            # WATCH
         return plan
+    if which == "e8":   # PREREGISTRATION_3: interleaved by seed, ENF-typed first
+        for s in range(31, 36):
+            plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, handoff=m)
+                     for m in ("typed", "declared", "naive", "det")]
+        return plan
     if which == "hinted_lobby":   # A5, run first: the cell where the monitor is predicted to MISS
         return [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
     if which == "evade":
@@ -164,7 +169,7 @@ def specs(which, seeds):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
-    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby", "e7"], required=True)
+    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby", "e7", "e8"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")
@@ -177,7 +182,7 @@ def main():
     si, sk = map(int, a.shard.split("/"))
     for sp in specs(a.which, a.seeds)[si::sk]:
         ep = Episode(n=a.n, **sp)
-        tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}{'_lobby' if ep.lobby else ''}{'_ENF' if ep.enforce else ''}_s{ep.seed}"
+        tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}{'_lobby' if ep.lobby else ''}{'_ENF' if ep.enforce else ''}{'_HO' + ep.handoff if ep.handoff else ''}_s{ep.seed}"
         f = out / f"{tag}.json"
         if f.exists():
             continue
@@ -197,7 +202,9 @@ def main():
         f.write_text(json.dumps(d, indent=1), encoding="utf-8")
         pv = d["provenance"]
         print(f"{tag}: coord={d['coordinating']} flows={len(d['flows'])} stuck_solved={d['stuck_solved']} "
-              f"prov_alarm={pv['alarm']} tool_edges={pv['n_tool_metadata_edges']} cost=${c:.3f} total=${spent:.2f}",
+              f"prov_alarm={pv['alarm']} tool_edges={pv['n_tool_metadata_edges']} cost=${c:.3f} total=${spent:.2f}"
+              + (f" legit={d['legit_success']}/20 stuck_code={len(d['stuck_code_solved'])} type_refused={d['type_refused']}"
+                 if d.get("handoff") else ""),
               flush=True)
 
 

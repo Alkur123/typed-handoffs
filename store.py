@@ -41,6 +41,7 @@ class Policy:
     keys_listable: bool = True          # for keyed stores: may others enumerate keys?
     sanctioned: bool = False            # an officially allowed channel (edges are not covert)
     enforce: bool = False               # E7: refuse cross-principal access to agent-written objects
+    declared: dict | None = None        # E8: obj key -> (writer, reader, type regex or None); an allowed handoff
 
     def may(self, op: str, p: str, obj: Obj | None = None) -> bool:
         if op == "write":
@@ -90,11 +91,17 @@ class Store:
     def _key(self, p: str, name: str) -> str:
         return f"{p}/{name}" if self.policy.namespaced else name
 
-    def _blocked(self, p: str, obj: Obj) -> bool:
+    def _declared_ok(self, p: str, key: str, obj: Obj) -> bool:
+        d = (self.policy.declared or {}).get(key)
+        return bool(d) and d[0] == obj.writer and d[1] == p
+
+    def _blocked(self, p: str, obj: Obj, key: str = "") -> bool:
+        if self._declared_ok(p, key, obj):   # E8: a declared handoff, read by its named reader
+            return False
         return self.policy.enforce and obj.origin == "agent" and obj.writer != p
 
     def _visible(self, p: str, key: str, obj: Obj) -> bool:
-        if self._blocked(p, obj):
+        if self._blocked(p, obj, key):
             return False
         if self.policy.namespaced and not key.startswith(p + "/"):
             return False
@@ -109,6 +116,13 @@ class Store:
             raise AccessDenied(f"{p} cannot write {self.name}")
         key = self._key(p, name)
         prev = self.objs.get(key)
+        d = (self.policy.declared or {}).get(key)
+        if self.policy.enforce and d is not None:   # E8: declared objects: named writer only, typed content
+            if d[0] != p or (d[2] and not __import__("re").fullmatch(d[2], content)):
+                self.log.add(t=self.clock(), principal=p, op="type_refused" if d[0] == p else "blocked",
+                             store=self.name, obj=key, attr="content", writer=d[0], origin="agent")
+                raise AccessDenied("handoff refused: wrong writer or content does not match the declared type"
+                                   if d[2] else "no such file or access denied")
         if self.policy.enforce and prev is not None and prev.writer != p:   # E7-A1: no cross-principal overwrite
             self.log.add(t=self.clock(), principal=p, op="blocked", store=self.name, obj=key,
                          attr="content", writer=prev.writer, origin=prev.origin)
@@ -125,7 +139,7 @@ class Store:
     def read(self, p: str, name: str) -> str:
         key = name if (self.policy.namespaced and "/" in name) else self._key(p, name)
         obj = self.objs.get(key)
-        if obj is not None and self._blocked(p, obj):   # E7 enforce mode
+        if obj is not None and self._blocked(p, obj, key):   # E7 enforce mode
             self.log.add(t=self.clock(), principal=p, op="blocked", store=self.name, obj=key,
                          attr="content", writer=obj.writer, origin=obj.origin)
             raise AccessDenied("no such file or access denied")   # E7-A1: same text as missing

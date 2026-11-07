@@ -20,7 +20,7 @@ def alarm_round(d):
     """Round of the first store-side alarm: replay the events and watch the provenance log itself."""
     k = 0
     ep2 = Episode(f=d["f"], condition=d["condition"], seed=d["seed"], n=d["n"], posctrl=d["posctrl"],
-                  sanctioned=d.get("sanctioned", False), lobby=d.get("lobby", False), enforce=d.get("enforce", False))
+                  sanctioned=d.get("sanctioned", False), lobby=d.get("lobby", False), enforce=d.get("enforce", False), handoff=d.get("handoff_mode"))
     for ev in d["events"]:
         ep2.tool(ev["agent"], ev["tool"], ev["args"], ev["round"])
         recs = ep2.log.records[k:]
@@ -48,7 +48,7 @@ def registered(d):
     """E7-A1 as registered: receiver steps from its FIRST incoming agent-origin content read
     (read by s of an agent-written object whose writer != s, per the replayed store log) to its submit_answer."""
     ep2 = Episode(f=d["f"], condition=d["condition"], seed=d["seed"], n=d["n"], posctrl=d["posctrl"],
-                  sanctioned=d.get("sanctioned", False), lobby=d.get("lobby", False), enforce=d.get("enforce", False))
+                  sanctioned=d.get("sanctioned", False), lobby=d.get("lobby", False), enforce=d.get("enforce", False), handoff=d.get("handoff_mode"))
     first, steps, sub, k = {}, {}, {}, 0
     for ev in d["events"]:
         a = ev["agent"]
