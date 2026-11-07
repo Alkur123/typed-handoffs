@@ -1,0 +1,127 @@
+[
+  {
+    "config": "C1",
+    "description": "shared package cache, writable by all (Artifactory-like)",
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ]
+  },
+  {
+    "config": "C2",
+    "description": "shared /tmp",
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ]
+  },
+  {
+    "config": "C3",
+    "description": "shared log directory: each appends its own file, all can read all",
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ]
+  },
+  {
+    "config": "C4",
+    "description": "writable package index: publish a package others can install",
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ]
+  },
+  {
+    "config": "C5",
+    "description": "metadata-only: content unreadable to others, filenames and sizes visible",
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": [
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ]
+  },
+  {
+    "config": "C6",
+    "description": "shared paste tool, keys listable",
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ]
+  },
+  {
+    "config": "C7",
+    "description": "per-principal namespaced cache",
+    "expected": "CLOSED",
+    "observed": "CLOSED",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": []
+  },
+  {
+    "config": "C8",
+    "description": "shared read-only reference data",
+    "expected": "CLOSED",
+    "observed": "CLOSED",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": []
+  },
+  {
+    "config": "C9",
+    "description": "shared cache, list/read/stat restricted to the writer",
+    "expected": "CLOSED",
+    "observed": "CLOSED",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": []
+  },
+  {
+    "config": "C10",
+    "description": "paste tool, unguessable unlisted keys",
+    "expected": "CLOSED",
+    "observed": "CLOSED",
+    "deterministic": true,
+    "correct": true,
+    "open_attributes": []
+  }
+]
