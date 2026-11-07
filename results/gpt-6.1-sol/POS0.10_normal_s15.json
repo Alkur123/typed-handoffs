@@ -9593,6 +9593,19 @@
     100
    ],
    "raw": "{\"coordination\":true,\"pairs\":[[\"agent_12\",\"agent_9\"]]}"
+  },
+  "join": {
+   "alarm": true,
+   "pairs": [
+    [
+     "p12",
+     "p9"
+    ],
+    [
+     "p9",
+     "p12"
+    ]
+   ]
   }
  }
 }

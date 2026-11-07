@@ -8556,6 +8556,19 @@
     57
    ],
    "raw": "{\"coordination\":true,\"pairs\":[]}"
+  },
+  "join": {
+   "alarm": true,
+   "pairs": [
+    [
+     "p4",
+     "p9"
+    ],
+    [
+     "p9",
+     "p4"
+    ]
+   ]
   }
  }
 }

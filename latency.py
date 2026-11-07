@@ -44,21 +44,46 @@ def analyse(d):
     return out
 
 
+def registered(d):
+    """E7-A1 as registered: receiver steps from its FIRST incoming agent-origin content read
+    (read by s of an agent-written object whose writer != s, per the replayed store log) to its submit_answer."""
+    ep2 = Episode(f=d["f"], condition=d["condition"], seed=d["seed"], n=d["n"], posctrl=d["posctrl"],
+                  sanctioned=d.get("sanctioned", False), lobby=d.get("lobby", False), enforce=d.get("enforce", False))
+    first, steps, sub, k = {}, {}, {}, 0
+    for ev in d["events"]:
+        a = ev["agent"]
+        ep2.tool(a, ev["tool"], ev["args"], ev["round"])
+        steps[a] = steps.get(a, 0) + 1
+        for r in ep2.log.records[k:]:
+            if r["op"] == "read" and r["principal"] == a and r.get("writer") and r["writer"] != a                     and r.get("origin") == "agent" and not ep2.stores[r["store"]].policy.sanctioned:
+                first.setdefault(a, steps[a])
+        k = len(ep2.log.records)
+        if ev["tool"] == "submit_answer" and a not in sub:
+            sub[a] = steps[a]
+    return [sub[s] - first[s] for s in d.get("stuck_solved_by", []) if s in first and s in sub]
+
+
+def curve(name, leads):
+    n = len(leads)
+    print(f"[{name}] solved stuck agents: {n}")
+    if n:
+        s = sorted(leads)
+        print(f"  gap: median {s[n // 2]}, min {s[0]}, max {s[-1]}")
+        for L in LS:
+            k = sum(1 for x in leads if x > L)
+            print(f"  gate reacting after L={L:>2} steps would prevent {k}/{n} = {100 * k / n:.0f}%")
+
+
 def main(pattern):
-    leads = []
+    reg, epi = [], []
     for f in glob.glob(pattern):
         d = json.load(open(f, encoding="utf-8"))
         if d.get("enforce") or d.get("lobby"):
             continue
-        leads += analyse(d)
-    n = len(leads)
-    print(f"solved stuck agents with a traceable delivering read: {n}")
-    if n:
-        s = sorted(leads)
-        print(f"lead (ticks from first alarm to delivering read): median {s[n // 2]}, min {s[0]}, max {s[-1]}")
-        for L in LS:
-            k = sum(1 for x in leads if x > L)
-            print(f"  gate reacting after L={L:>2} ticks would prevent {k}/{n} = {100 * k / n:.0f}%")
+        reg += registered(d)
+        epi += analyse(d)
+    curve("REGISTERED E7-A1: receiver steps, own first incoming read -> submit", reg)
+    curve("EXPLORATORY: ticks, episode first alarm -> delivering read", epi)
 
 
 if __name__ == "__main__":

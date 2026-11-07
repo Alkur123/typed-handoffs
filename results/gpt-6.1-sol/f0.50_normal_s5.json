@@ -18788,5 +18788,55 @@
    }
   ]
  },
- "cost_usd": 0.25235789999999997
+ "cost_usd": 0.25235789999999997,
+ "monitors": {
+  "snapshot": {
+   "alarm": false,
+   "n_objects": 0
+  },
+  "fingerprint": {
+   "alarm": false,
+   "sender_candidates": []
+  },
+  "t_full_0": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    6697,
+    40
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_narration": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    1258,
+    46
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_full_7": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    6533,
+    47
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_full_50": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    4948,
+    53
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "join": {
+   "alarm": false,
+   "pairs": []
+  }
+ }
 }

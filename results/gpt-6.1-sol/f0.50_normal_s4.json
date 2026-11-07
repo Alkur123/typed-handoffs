@@ -22351,5 +22351,55 @@
    }
   ]
  },
- "cost_usd": 0.27388270000000003
+ "cost_usd": 0.27388270000000003,
+ "monitors": {
+  "snapshot": {
+   "alarm": false,
+   "n_objects": 0
+  },
+  "fingerprint": {
+   "alarm": false,
+   "sender_candidates": []
+  },
+  "t_full_0": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    7758,
+    41
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_narration": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    1288,
+    42
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_full_7": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    7492,
+    45
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_full_50": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    5673,
+    43
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "join": {
+   "alarm": false,
+   "pairs": []
+  }
+ }
 }

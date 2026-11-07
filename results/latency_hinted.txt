@@ -1,7 +1,0 @@
-solved stuck agents with a traceable delivering read: 230
-lead (ticks from first alarm to delivering read): median 3, min 1, max 13
-  gate reacting after L= 0 ticks would prevent 230/230 = 100%
-  gate reacting after L= 1 ticks would prevent 192/230 = 83%
-  gate reacting after L= 2 ticks would prevent 158/230 = 69%
-  gate reacting after L= 5 ticks would prevent 26/230 = 11%
-  gate reacting after L=10 ticks would prevent 3/230 = 1%

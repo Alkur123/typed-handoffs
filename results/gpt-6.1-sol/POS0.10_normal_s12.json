@@ -8496,6 +8496,19 @@
     78
    ],
    "raw": "{\"coordination\":true,\"pairs\":[]}"
+  },
+  "join": {
+   "alarm": true,
+   "pairs": [
+    [
+     "p16",
+     "p17"
+    ],
+    [
+     "p17",
+     "p16"
+    ]
+   ]
   }
  }
 }

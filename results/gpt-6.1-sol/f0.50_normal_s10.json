@@ -21964,6 +21964,10 @@
     50
    ],
    "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "join": {
+   "alarm": false,
+   "pairs": []
   }
  }
 }

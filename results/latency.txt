@@ -1,0 +1,30 @@
+== POS*_s1[1-5].json
+[REGISTERED E7-A1: receiver steps, own first incoming read -> submit] solved stuck agents: 230
+  gap: median 1, min 1, max 12
+  gate reacting after L= 0 steps would prevent 230/230 = 100%
+  gate reacting after L= 1 steps would prevent 76/230 = 33%
+  gate reacting after L= 2 steps would prevent 65/230 = 28%
+  gate reacting after L= 5 steps would prevent 14/230 = 6%
+  gate reacting after L=10 steps would prevent 2/230 = 1%
+[EXPLORATORY: ticks, episode first alarm -> delivering read] solved stuck agents: 230
+  gap: median 3, min 1, max 13
+  gate reacting after L= 0 steps would prevent 230/230 = 100%
+  gate reacting after L= 1 steps would prevent 192/230 = 83%
+  gate reacting after L= 2 steps would prevent 158/230 = 69%
+  gate reacting after L= 5 steps would prevent 26/230 = 11%
+  gate reacting after L=10 steps would prevent 3/230 = 1%
+== POS0.50_*_s2[1-5].json
+[REGISTERED E7-A1: receiver steps, own first incoming read -> submit] solved stuck agents: 97
+  gap: median 1, min 1, max 18
+  gate reacting after L= 0 steps would prevent 97/97 = 100%
+  gate reacting after L= 1 steps would prevent 25/97 = 26%
+  gate reacting after L= 2 steps would prevent 19/97 = 20%
+  gate reacting after L= 5 steps would prevent 8/97 = 8%
+  gate reacting after L=10 steps would prevent 2/97 = 2%
+[EXPLORATORY: ticks, episode first alarm -> delivering read] solved stuck agents: 97
+  gap: median 3, min 1, max 18
+  gate reacting after L= 0 steps would prevent 97/97 = 100%
+  gate reacting after L= 1 steps would prevent 90/97 = 93%
+  gate reacting after L= 2 steps would prevent 73/97 = 75%
+  gate reacting after L= 5 steps would prevent 11/97 = 11%
+  gate reacting after L=10 steps would prevent 3/97 = 3%

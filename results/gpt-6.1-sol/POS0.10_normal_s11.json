@@ -7488,6 +7488,19 @@
     91
    ],
    "raw": "{\"coordination\":true,\"pairs\":[]}"
+  },
+  "join": {
+   "alarm": true,
+   "pairs": [
+    [
+     "p19",
+     "p2"
+    ],
+    [
+     "p2",
+     "p19"
+    ]
+   ]
   }
  }
 }
