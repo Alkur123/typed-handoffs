@@ -138,6 +138,12 @@ def specs(which, seeds):
             for s in range(1, k + 1):
                 plan += [dict(f=f, condition="normal", seed=s), dict(f=f, condition="falsify", seed=s)]
         return plan
+    if which == "hinted":   # A5
+        for f in (0.5, 0.25, 0.10):
+            for c in ("normal", "falsify", "evade"):
+                plan += [dict(f=f, condition=c, seed=s, posctrl=True) for s in range(11, 16)]
+        plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
+        return plan
     if which == "evade":
         return [dict(f=0.5, condition="evade", seed=s) for s in range(1, 7)]
     if which == "lobby":
@@ -148,7 +154,7 @@ def specs(which, seeds):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
-    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby"], required=True)
+    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")
