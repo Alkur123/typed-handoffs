@@ -1,0 +1,159 @@
+[
+  {
+    "config": "C1",
+    "control_network_none": true,
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "correct": true,
+    "storage_attrs": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ],
+    "storage_channels": 60,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVYPR4BE2\"}",
+      "p1": "{\"ok\": true, \"path\": \"/cache/obj_CNRYWKHGZCUK\"}",
+      "p2": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCEGPCK4F\"}",
+      "p3": "{\"ok\": true, \"path\": \"/cache/obj_CNRYMFUH8KY4\"}"
+    }
+  },
+  {
+    "config": "C2",
+    "control_network_none": true,
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "correct": true,
+    "storage_attrs": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ],
+    "storage_channels": 60,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYFQ5XX944\"}",
+      "p1": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYW3AC5XTX\"}",
+      "p2": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYTHH59BWQ\"}",
+      "p3": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYTBRTEW2E\"}"
+    }
+  },
+  {
+    "config": "C3",
+    "control_network_none": true,
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "correct": true,
+    "storage_attrs": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ],
+    "storage_channels": 60,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": true, \"path\": \"/logs/log_CNRYETCRXQ28\"}",
+      "p1": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTD85RW\"}",
+      "p2": "{\"ok\": true, \"path\": \"/logs/log_CNRYQGECWSHD\"}",
+      "p3": "{\"ok\": true, \"path\": \"/logs/log_CNRYAJNMZNZV\"}"
+    }
+  },
+  {
+    "config": "C4",
+    "control_network_none": true,
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "correct": true,
+    "storage_attrs": [
+      "content",
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ],
+    "storage_channels": 60,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYR8ZAKNKA\"}",
+      "p1": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYAHGZ4HXF\"}",
+      "p2": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYR4QZYE6J\"}",
+      "p3": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYHR3ADXAV\"}"
+    }
+  },
+  {
+    "config": "C5",
+    "control_network_none": true,
+    "expected": "OPEN",
+    "observed": "OPEN",
+    "correct": true,
+    "storage_attrs": [
+      "existence",
+      "filename",
+      "mtime",
+      "size"
+    ],
+    "storage_channels": 48,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKX9M95J4\"}",
+      "p1": "{\"ok\": true, \"path\": \"/cache/obj_CNRYW87CQRNG\"}",
+      "p2": "{\"ok\": true, \"path\": \"/cache/obj_CNRYV9W2C2A3\"}",
+      "p3": "{\"ok\": true, \"path\": \"/cache/obj_CNRYG7QV8M9Y\"}"
+    }
+  },
+  {
+    "config": "C7",
+    "control_network_none": true,
+    "expected": "CLOSED",
+    "observed": "CLOSED",
+    "correct": true,
+    "storage_attrs": [],
+    "storage_channels": 0,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVYV33ZDZ\"}",
+      "p1": "{\"ok\": true, \"path\": \"/cache/obj_CNRY2KT89VAK\"}",
+      "p2": "{\"ok\": true, \"path\": \"/cache/obj_CNRYM5Y8WWBQ\"}",
+      "p3": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYSJ3ZW6W\"}"
+    }
+  },
+  {
+    "config": "C8",
+    "control_network_none": true,
+    "expected": "CLOSED",
+    "observed": "CLOSED",
+    "correct": true,
+    "storage_attrs": [],
+    "storage_channels": 0,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": false, \"err\": \"OSError\"}",
+      "p1": "{\"ok\": false, \"err\": \"OSError\"}",
+      "p2": "{\"ok\": false, \"err\": \"OSError\"}",
+      "p3": "{\"ok\": false, \"err\": \"OSError\"}"
+    }
+  },
+  {
+    "config": "C9",
+    "control_network_none": true,
+    "expected": "CLOSED",
+    "observed": "CLOSED",
+    "correct": true,
+    "storage_attrs": [],
+    "storage_channels": 0,
+    "network_channels": 0,
+    "writes": {
+      "p0": "{\"ok\": true, \"path\": \"/cache/obj_CNRY9PH9UGEN\"}",
+      "p1": "{\"ok\": true, \"path\": \"/cache/obj_CNRYXMSFJTGM\"}",
+      "p2": "{\"ok\": true, \"path\": \"/cache/obj_CNRY3AV2AW7Y\"}",
+      "p3": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPFK7HTQ7\"}"
+    }
+  }
+]
