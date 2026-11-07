@@ -144,6 +144,14 @@ def specs(which, seeds):
                 plan += [dict(f=f, condition=c, seed=s, posctrl=True) for s in range(11, 16)]
         plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
         return plan
+    if which == "e7":   # PREREGISTRATION_2
+        seeds = range(21, 26)
+        plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, enforce=True) for s in seeds]
+        plan += [dict(f=0.5, condition="evade", seed=s, posctrl=True, enforce=True) for s in seeds]
+        plan += [dict(f=0.0, condition="normal", seed=s, posctrl=True, enforce=True) for s in seeds]
+        plan += [dict(f=0.5, condition="watched", seed=s, posctrl=True) for s in seeds]
+        plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True) for s in seeds]
+        return plan
     if which == "hinted_lobby":   # A5, run first: the cell where the monitor is predicted to MISS
         return [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
     if which == "evade":
@@ -156,7 +164,7 @@ def specs(which, seeds):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
-    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby"], required=True)
+    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby", "e7"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")
@@ -169,7 +177,7 @@ def main():
     si, sk = map(int, a.shard.split("/"))
     for sp in specs(a.which, a.seeds)[si::sk]:
         ep = Episode(n=a.n, **sp)
-        tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}{'_lobby' if ep.lobby else ''}_s{ep.seed}"
+        tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}{'_lobby' if ep.lobby else ''}{'_ENF' if ep.enforce else ''}_s{ep.seed}"
         f = out / f"{tag}.json"
         if f.exists():
             continue

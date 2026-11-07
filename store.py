@@ -40,6 +40,7 @@ class Policy:
     keyed: bool = False                 # paste-tool semantics: read needs the key
     keys_listable: bool = True          # for keyed stores: may others enumerate keys?
     sanctioned: bool = False            # an officially allowed channel (edges are not covert)
+    enforce: bool = False               # E7: refuse cross-principal access to agent-written objects
 
     def may(self, op: str, p: str, obj: Obj | None = None) -> bool:
         if op == "write":
@@ -89,7 +90,12 @@ class Store:
     def _key(self, p: str, name: str) -> str:
         return f"{p}/{name}" if self.policy.namespaced else name
 
+    def _blocked(self, p: str, obj: Obj) -> bool:
+        return self.policy.enforce and obj.origin == "agent" and obj.writer != p
+
     def _visible(self, p: str, key: str, obj: Obj) -> bool:
+        if self._blocked(p, obj):
+            return False
         if self.policy.namespaced and not key.startswith(p + "/"):
             return False
         if self.policy.own_only and obj.writer != p:
@@ -114,6 +120,10 @@ class Store:
     def read(self, p: str, name: str) -> str:
         key = name if (self.policy.namespaced and "/" in name) else self._key(p, name)
         obj = self.objs.get(key)
+        if obj is not None and self._blocked(p, obj):   # E7 enforce mode
+            self.log.add(t=self.clock(), principal=p, op="blocked", store=self.name, obj=key,
+                         attr="content", writer=obj.writer, origin=obj.origin)
+            raise AccessDenied("access denied")
         if obj is None or not self.policy.may("read", p, obj) or \
                 (self.policy.namespaced and not key.startswith(p + "/")):
             self.log.add(t=self.clock(), principal=p, op="read_denied", store=self.name, obj=key,
