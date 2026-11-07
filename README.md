@@ -85,7 +85,7 @@ python run_swarm.py --model gpt-6.1-sol --which e8
 
 **Pre-existing code (not judged):** the API call/retry pattern and cost formula in `run_swarm.py`, and `report/build_report.py`, are adapted from our October 2026 Apart sprint and marked `PREEXISTING` in the files. Everything else was written during this sprint.
 
-**About this public copy:** this repository is the sprint folder exported with its full commit history, so every registration keeps its original timestamp. Session notes from our adversarial design reviews are not included, and the reviewing model is referred to as "reviewer model" in the working files.
+**About this public copy:** this repository is the sprint folder exported with its full commit history, so every registration keeps its original timestamp. Session notes from our adversarial design reviews are not included.
 
 ## Citation
 
