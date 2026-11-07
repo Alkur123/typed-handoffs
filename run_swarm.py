@@ -144,6 +144,8 @@ def specs(which, seeds):
                 plan += [dict(f=f, condition=c, seed=s, posctrl=True) for s in range(11, 16)]
         plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
         return plan
+    if which == "hinted_lobby":   # A5, run first: the cell where the monitor is predicted to MISS
+        return [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
     if which == "evade":
         return [dict(f=0.5, condition="evade", seed=s) for s in range(1, 7)]
     if which == "lobby":
@@ -154,7 +156,7 @@ def specs(which, seeds):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
-    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted"], required=True)
+    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")
