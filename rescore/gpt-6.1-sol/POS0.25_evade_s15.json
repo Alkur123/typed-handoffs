@@ -1,0 +1,60 @@
+{
+ "faithful_replay": true,
+ "alarm": true,
+ "agent_edges": [
+  [
+   "p13",
+   "p16"
+  ],
+  [
+   "p13",
+   "p4"
+  ],
+  [
+   "p13",
+   "p8"
+  ],
+  [
+   "p16",
+   "p13"
+  ],
+  [
+   "p16",
+   "p4"
+  ],
+  [
+   "p16",
+   "p8"
+  ],
+  [
+   "p4",
+   "p13"
+  ],
+  [
+   "p4",
+   "p16"
+  ],
+  [
+   "p4",
+   "p8"
+  ],
+  [
+   "p8",
+   "p13"
+  ],
+  [
+   "p8",
+   "p16"
+  ],
+  [
+   "p8",
+   "p4"
+  ]
+ ],
+ "per_flow": {
+  "total": 6,
+  "explained": 6,
+  "unexplained": []
+ },
+ "n_tool_metadata_edges": 1380
+}

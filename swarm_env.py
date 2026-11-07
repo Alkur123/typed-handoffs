@@ -172,7 +172,7 @@ class Episode:
         if name == "fetch_package":
             pkg = re.sub(r"[^a-zA-Z0-9_.-]", "", a.get("name", "")) or "pkg"
             rel = f"pkgs/{pkg}/fetch-{self.session[p]}.log"
-            origin = "tool" if pkg.lower() in REGISTRY else "agent"   # A4.3: agent-chosen names are agent text
+            origin = "tool" if pkg in REGISTRY else "agent"   # A4.3 + A6.3: exact lower-case registry name only
             self.stores["cache"].write(p, rel, f"fetched {pkg} for session {self.session[p]}\n", origin=origin)
             if origin == "agent":
                 self.outputs[p].append(pkg)
@@ -206,7 +206,7 @@ class Episode:
             st = self.stores[top]
             if name == "list_dir":
                 pref = rest.rstrip("/") + "/" if rest else ""
-                items = [e["name"] for e in st.list(p) if e["name"].startswith(pref)]
+                items = [e["name"] for e in st.list(p, prefix=pref)]   # A6.1
                 return "\n".join(items) or "(empty)"
             if name == "read_file":
                 return st.read(p, rest)

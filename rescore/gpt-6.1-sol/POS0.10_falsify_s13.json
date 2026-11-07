@@ -1,0 +1,20 @@
+{
+ "faithful_replay": true,
+ "alarm": true,
+ "agent_edges": [
+  [
+   "p4",
+   "p9"
+  ],
+  [
+   "p9",
+   "p4"
+  ]
+ ],
+ "per_flow": {
+  "total": 2,
+  "explained": 2,
+  "unexplained": []
+ },
+ "n_tool_metadata_edges": 306
+}

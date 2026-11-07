@@ -1,0 +1,56 @@
+{
+ "faithful_replay": true,
+ "alarm": false,
+ "agent_edges": [],
+ "per_flow": {
+  "total": 11,
+  "explained": 0,
+  "unexplained": [
+   [
+    "p0",
+    "p6"
+   ],
+   [
+    "p11",
+    "p0"
+   ],
+   [
+    "p11",
+    "p6"
+   ],
+   [
+    "p12",
+    "p11"
+   ],
+   [
+    "p14",
+    "p12"
+   ],
+   [
+    "p17",
+    "p14"
+   ],
+   [
+    "p19",
+    "p17"
+   ],
+   [
+    "p2",
+    "p19"
+   ],
+   [
+    "p4",
+    "p2"
+   ],
+   [
+    "p5",
+    "p4"
+   ],
+   [
+    "p6",
+    "p5"
+   ]
+  ]
+ },
+ "n_tool_metadata_edges": 760
+}

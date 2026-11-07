@@ -120,16 +120,19 @@ class Store:
                          attr="content", writer=None)
             raise AccessDenied(f"{p} cannot read {self.name}:{name}")
         self.log.add(t=self.clock(), principal=p, op="read", store=self.name, obj=key,
-                     attr="content", writer=obj.writer)
+                     attr="content", writer=obj.writer, origin=obj.origin)
         return obj.content
 
-    def list(self, p: str) -> list[dict]:
+    def list(self, p: str, prefix: str = "") -> list[dict]:
         if not self.policy.may("list", p):
             raise AccessDenied(f"{p} cannot list {self.name}")
         out = []
         for key, obj in sorted(self.objs.items()):
             if not self._visible(p, key, obj):
                 continue
+            shown = key.split("/", 1)[1] if self.policy.namespaced else key
+            if prefix and not shown.startswith(prefix):
+                continue   # A6.1: only objects actually returned are logged
             entry = {"name": key.split("/", 1)[1] if self.policy.namespaced else key}
             attrs = ["filename", "existence"]
             if self.policy.sizes_visible:
@@ -138,7 +141,7 @@ class Store:
             out.append(entry)
             for a in attrs:
                 self.log.add(t=self.clock(), principal=p, op="list", store=self.name, obj=key,
-                             attr=a, writer=obj.writer)
+                             attr=a, writer=obj.writer, origin=obj.origin)
         return out
 
     def stat(self, p: str, name: str) -> dict:
@@ -148,7 +151,7 @@ class Store:
             raise AccessDenied(f"{p} cannot stat {self.name}:{name}")
         for a in ("size", "mtime", "existence"):
             self.log.add(t=self.clock(), principal=p, op="stat", store=self.name, obj=key,
-                         attr=a, writer=obj.writer)
+                         attr=a, writer=obj.writer, origin=obj.origin)
         return {"size": obj.size, "mtime": obj.mtime}
 
 
@@ -164,6 +167,6 @@ def edges(log: ProvLog, stores: dict[str, Store]) -> list[dict]:
             st = stores.get(r["store"])
             out.append({"src": r["writer"], "dst": r["principal"], "store": r["store"],
                         "attr": r["attr"], "op": r["op"], "t": r["t"], "obj": r["obj"],
-                        "origin": st.origin_of(r["obj"]) if st else "agent",
+                        "origin": r.get("origin") or (st.origin_of(r["obj"]) if st else "agent"),  # A6.2
                         "sanctioned": bool(st and st.policy.sanctioned)})
     return out
