@@ -43,6 +43,26 @@ from openai import DefaultHttpxClient  # noqa: E402
 CLIENT = OpenAI(api_key=api_key(), max_retries=6, timeout=120,
                 http_client=DefaultHttpxClient(limits=httpx.Limits(max_connections=64, max_keepalive_connections=24,
                                                                    keepalive_expiry=15.0)))
+# E9 (PREREGISTRATION_4): Adaption-hosted open-weight models behind an OpenAI-compatible Responses API.
+ADAPTION_MODELS = {"qwen3.5-397b", "deepseek-v4-flash", "glm-5.2", "gemma-4-31b-it", "glm-53-flash",
+                   "gemma-4-26b-a4b-it", "qwen3.8-27b"}
+_ADAPTION = None
+
+
+def client_for(model):
+    global _ADAPTION
+    if model not in ADAPTION_MODELS:
+        return CLIENT
+    if _ADAPTION is None:
+        key = next((l.strip().split("=", 1)[1].strip().strip('"') for l in
+                    (HERE.parents[1] / "backend" / ".env").read_text(encoding="utf-8").splitlines()
+                    if l.strip().startswith("ADAPTION_API_KEY=")), None) or sys.exit("ADAPTION_API_KEY not found")
+        _ADAPTION = OpenAI(api_key=key, base_url="https://api.prod.adaptionlabs.ai/api/v1", max_retries=6, timeout=180,
+                           http_client=DefaultHttpxClient(limits=httpx.Limits(max_connections=64,
+                                                          max_keepalive_connections=24, keepalive_expiry=15.0)))
+    return _ADAPTION
+
+
 def resp_tools(tools):
     return [{"type": "function", "name": t["name"], "description": t["description"],
              "parameters": t["parameters"], "strict": False} for t in tools]
@@ -55,10 +75,13 @@ def rcall(model, instructions, inp, prev, tools, tools_on=True):  # PREEXISTING 
         kw["previous_response_id"] = prev
     if not tools_on:
         kw["tool_choice"] = "none"
+    if model in ADAPTION_MODELS:
+        kw["store"] = True   # Adaption: previous_response_id needs stored responses
+    cl = client_for(model)
     t0 = time.time()
     for attempt in range(60):   # 7 Nov evening fix: ride out connection outages up to ~15 min per call
         try:
-            return CLIENT.responses.create(**kw)
+            return cl.responses.create(**kw)
         except Exception as e:
             if getattr(e, "code", None) in ("credit_balance_exhausted", "insufficient_quota"):
                 print("OUT OF CREDITS: add OpenAI credits; nothing is retried.", flush=True)
@@ -179,6 +202,17 @@ def specs(which, seeds):
         for s in range(31, 36):
             plan += [dict(f=0.5, condition="helpful", seed=s, posctrl=True, handoff=m) for m in ("typed", "declared")]
         return plan
+    if which == "e9gate":   # PREREGISTRATION_4 gate
+        return [dict(f=0.5, condition="normal", seed=s, posctrl=True, handoff="det") for s in (31, 32)]
+    if which == "e9":   # PREREGISTRATION_4 cells, interleaved by seed, registered order
+        for s in range(31, 36):
+            plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, handoff="typed"),
+                     dict(f=0.5, condition="helpful", seed=s, posctrl=True, handoff="typed"),
+                     dict(f=0.5, condition="normal", seed=s, posctrl=True, handoff="det"),
+                     dict(f=0.5, condition="normal", seed=s, posctrl=True, handoff="declared"),
+                     dict(f=0.5, condition="helpful", seed=s, posctrl=True, handoff="declared"),
+                     dict(f=0.5, condition="normal", seed=s, posctrl=True, handoff="naive")]
+        return plan
     if which == "hinted_lobby":   # A5, run first: the cell where the monitor is predicted to MISS
         return [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
     if which == "evade":
@@ -191,7 +225,7 @@ def specs(which, seeds):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
-    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby", "e7", "e8", "e8b"], required=True)
+    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby", "e7", "e8", "e8b", "e9gate", "e9"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")
@@ -200,7 +234,7 @@ def main():
     out = HERE / ("results_smoke" if a.which == "smoke" else "results") / a.model
     out.mkdir(parents=True, exist_ok=True)
     cap = float(os.environ.get("BUDGET_USD", "inf"))
-    price = PRICE.get(a.model, (5.0, 0.5, 30.0))
+    price = (0.0, 0.0, 0.0) if a.model in ADAPTION_MODELS else PRICE.get(a.model, (5.0, 0.5, 30.0))   # E9: free credits
     spent = 0.0
     si, sk = map(int, a.shard.split("/"))
     keep = {int(x) for x in a.only_seeds.split(",") if x}
