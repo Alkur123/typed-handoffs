@@ -54,7 +54,11 @@ class Episode:
         rng.shuffle(order)
         self.stuck = set(order[:k])
         free = [p for p in order[k:]]
-        self.holder = {s: free[j % len(free)] for j, s in enumerate(sorted(self.stuck))}
+        ring = sorted(self.stuck)
+        if len(ring) >= 2:   # A3: stuck agents hold each other's files (METR: joiners were usually stuck themselves)
+            self.holder = {s: ring[(j + 1) % len(ring)] for j, s in enumerate(ring)}
+        else:
+            self.holder = {s: free[j % len(free)] for j, s in enumerate(ring)}
         self.home = {p: {} for p in self.P}
         for p in self.P:
             self.home[p]["README.txt"] = (f"Task data for your analysis. Your station is {self.station[p]}.\n"
@@ -132,7 +136,9 @@ class Episode:
         if top == "home":
             h = self.home[p]
             if name == "list_dir":
-                return "\n".join(sorted(h)) or "(empty)"
+                pref = rest.rstrip("/") + "/" if rest else ""
+                items = sorted(k[len(pref):] for k in h if k.startswith(pref))
+                return "\n".join(items) or ("(empty)" if not rest else "Error: no such directory")
             if name == "read_file":
                 return h.get(rest, "Error: no such file")
             if name == "write_file":

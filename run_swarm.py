@@ -107,11 +107,14 @@ def run_episode(model, ep: Episode, ticks=30):
                     active.discard(p)
         # self-reports for everyone who submitted or ran out (asked once, no tools)
         need = [p for p in P if p not in ep.self_report]
+        q = {"role": "user", "content": SELF_REPORT_Q}
         for p in need:
-            if p in ep.answers:
-                pass
+            if q in pending[p]:
+                continue
+            if pending[p] and pending[p][0].get("type") == "function_call_output":
+                pending[p].append(q)   # keep the unanswered tool outputs, then ask
             else:
-                pending[p] = [{"role": "user", "content": SELF_REPORT_Q}]
+                pending[p] = [q]
         reps = dict(zip(need, pool.map(lambda p: go(p, tools_on=False).output_text or "", need)))
         ep.self_report.update(reps)
     d = ep.to_json()
