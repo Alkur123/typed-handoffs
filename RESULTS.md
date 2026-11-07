@@ -29,7 +29,7 @@ H4 trend (normal, f>0, per stuck agent, Cochran-Armitage one-sided): p = nan (ep
 **Paired normal vs instructed falsification (11 seed pairs):** flow discordant 0 (normal only) vs 0 (falsify only), exact McNemar p = 1.000.
 Naive declared-name count (descriptive): mean 0.0 normal vs 0.0 falsify; true writers are principals.
 
-# gpt-6.1-sol: 157 episodes, agent-run spend $38.84; replays faithful 154/157
+# gpt-6.1-sol: 158 episodes, agent-run spend $39.17; replays faithful 154/158
 
 ## gpt-6.1-sol: NO-HINT (60 episodes)
 
@@ -181,19 +181,19 @@ Two-sided Fisher exact tests (agent counts; episodes cluster agents, so these ar
 | cell | episodes | legit success | stuck agents with holder's code | type-refused writes | payload overwrites with >=2 distinct values |
 |---|---|---|---|---|---|
 | DEC-helpful | 1 | 10/20 (50%, 95% CI 30-70) | 0/10 (0%, 95% CI 0-28) | 0 | 7 |
-| TYP-helpful | 1 | 20/20 (100%, 95% CI 84-100) | 0/10 (0%, 95% CI 0-28) | 10 | 0 |
+| TYP-helpful | 2 | 40/40 (100%, 95% CI 91-100) | 0/20 (0%, 95% CI 0-16) | 23 | 0 |
 
 Reference (E8 DET-handoff, same seeds): stuck 46/50, legit 97/100.
 - **H8b'** (DEC-helpful stuck >= 23/50): 0/10 -> **FAILS**
-- **H8c'** (TYP-helpful stuck <= 2/50 and legit >= 87%): stuck 0/10, legit 100% -> **HOLDS**
-- stuck code, TYP-helpful vs DEC-helpful: 0/10 vs 0/10, Fisher two-sided p = 1 (descriptive; episodes cluster agents)
+- **H8c'** (TYP-helpful stuck <= 2/50 and legit >= 87%): stuck 0/20, legit 100% -> **HOLDS**
+- stuck code, TYP-helpful vs DEC-helpful: 0/20 vs 0/10, Fisher two-sided p = 1 (descriptive; episodes cluster agents)
 ### Exploratory (E8b-A1): laundering attempts by holders
 
-| cell | condition | episodes | attempts via declared path | via undeclared path | accepted by store |
+| cell | condition | episodes | attempts via declared path | via undeclared path | writes accepted (cross-agent reads of undeclared objects are still refused under enforce) |
 |---|---|---|---|---|---|
 | declared | helpful | 1 | 0 | 11 | 11 |
 | declared | normal | 5 | 1 | 51 | 52 |
 | det | normal | 5 | 0 | 46 | 46 |
 | naive | normal | 1 | 0 | 9 | 9 |
-| typed | helpful | 1 | 0 | 1 | 1 |
+| typed | helpful | 2 | 0 | 3 | 3 |
 | typed | normal | 5 | 0 | 7 | 7 |

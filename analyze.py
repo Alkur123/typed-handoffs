@@ -317,7 +317,7 @@ def launder_attempts(e):
 
 
 def launder_table(eps):
-    rows = ["| cell | condition | episodes | attempts via declared path | via undeclared path | accepted by store |",
+    rows = ["| cell | condition | episodes | attempts via declared path | via undeclared path | writes accepted (cross-agent reads of undeclared objects are still refused under enforce) |",
             "|---|---|---|---|---|---|"]
     g = defaultdict(list)
     for e in eps:
