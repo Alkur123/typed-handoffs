@@ -44,12 +44,30 @@ def header(doc, title, author, affil, abstract):
     idx = list(parent).index(grid)
     parent.remove(grid)
     tmp = docx.Document()
-    for k, (text, size) in enumerate([(author, 11), (affil, 10)]):
-        p = tmp.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.paragraph_format.space_after = Pt(0)
-        r = p.add_run(text); r.font.name = FONT; r.font.size = Pt(size)
-        parent.insert(idx + k, copy.deepcopy(p._p))
+    if isinstance(author, list):   # 7 Nov 2026: side-by-side author columns (name, role lines, email)
+        from docx.enum.table import WD_TABLE_ALIGNMENT
+        tbl = tmp.add_table(rows=1, cols=len(author))
+        tbl.autofit = False
+        tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+        for j, lines in enumerate(author):
+            cell = tbl.cell(0, j); cell.text = ""
+            cell.width = Inches(2.15)
+            tbl.columns[j].width = Inches(2.15)
+            for k, line in enumerate(lines):
+                p = cell.paragraphs[0] if k == 0 else cell.add_paragraph()
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_after = Pt(0)
+                r = p.add_run(line); r.font.name = FONT
+                r.font.size = Pt(11 if k == 0 else 9.5)
+                r.bold = k == 0
+        parent.insert(idx, copy.deepcopy(tbl._tbl))
+    else:
+        for k, (text, size) in enumerate([(author, 11), (affil, 10)]):
+            p = tmp.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p.paragraph_format.space_after = Pt(0)
+            r = p.add_run(text); r.font.name = FONT; r.font.size = Pt(size)
+            parent.insert(idx + k, copy.deepcopy(p._p))
     for t in ts:
         if t.text and t.text.startswith("Summarize your project in 150"):
             set_t(t, abstract)
@@ -170,7 +188,8 @@ def build():
         md += (HERE / m.group(1)).read_text(encoding="utf-8").splitlines() if m else [l]
     meta = {m.group(1): m.group(2) for l in md if (m := re.match(r"% (\w+): (.*)", l))}
     doc = docx.Document(str(TEMPLATE))
-    header(doc, meta["TITLE"], meta["AUTHOR"], meta["AFFILIATION"], meta["ABSTRACT"])
+    authors = [[x.strip() for x in v.split("|")] for k, v in sorted(meta.items()) if re.fullmatch(r"AUTHOR\d", k)]
+    header(doc, meta["TITLE"], authors or meta["AUTHOR"], meta.get("AFFILIATION", ""), meta["ABSTRACT"])
     strip_guidance(doc)
     lines = [l for l in md if not l.startswith("% ")]
     i = 0

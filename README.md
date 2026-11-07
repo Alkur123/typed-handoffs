@@ -99,6 +99,10 @@ python run_swarm.py --model gpt-6.1-sol --which e8
 }
 ```
 
+## License
+
+Code and data are released under the [MIT License](LICENSE).
+
 ## Safety and acknowledgements
 
 All data and codes are synthetic; agents only ever touched the simulated store and their own containers. See Appendix A of the report for limitations and dual-use considerations. Thanks to Apart Research, the AI Alignment Foundation and AE Studio for organising the sprint, and to Adaption for platform credits.
