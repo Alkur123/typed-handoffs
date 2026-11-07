@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+results_smoke/
+review-notes (not in public copy)/
+logs/
+go_e8_finish.sh
+report/page*.png
