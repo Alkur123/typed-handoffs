@@ -148,7 +148,7 @@ def table(doc, rows):
         col = [hdr[j]] + [r[j] for r in body if j < len(r)]
         longest_word = max(len(w) for c in col for w in (re.sub(r"[*`]", "", c).split() or [""]))
         longest_cell = max(len(re.sub(r"[*`]", "", c)) for c in col[1:]) if body else longest_word
-        need.append(max(7, longest_word + 1, min(longest_cell, 34)))
+        need.append(max(7, longest_word + 3, min(longest_cell, 24)))
     scale = total / sum(need)
     for j in range(len(hdr)):
         for cell in t.columns[j].cells:
@@ -164,7 +164,10 @@ def table(doc, rows):
 
 
 def build():
-    md = SRC.read_text(encoding="utf-8").splitlines()
+    md = []
+    for l in SRC.read_text(encoding="utf-8").splitlines():   # '{{INCLUDE:file}}' pulls a generated appendix in
+        m = re.match(r"\{\{INCLUDE:(.+)\}\}$", l.strip())
+        md += (HERE / m.group(1)).read_text(encoding="utf-8").splitlines() if m else [l]
     meta = {m.group(1): m.group(2) for l in md if (m := re.match(r"% (\w+): (.*)", l))}
     doc = docx.Document(str(TEMPLATE))
     header(doc, meta["TITLE"], meta["AUTHOR"], meta["AFFILIATION"], meta["ABSTRACT"])
