@@ -174,7 +174,12 @@ def main():
         if spent >= cap:
             print(f"BUDGET CAP reached (${spent:.2f} >= ${cap:.2f}); {tag} and later cells NOT run", flush=True)
             break
-        d = run_episode(a.model, ep)
+        try:
+            d = run_episode(a.model, ep)
+        except Exception as e:   # network failures etc.: log, skip, rerun later (finished files are skipped)
+            print(f"EPISODE FAILED {tag}: {type(e).__name__}: {str(e)[:200]}", flush=True)
+            time.sleep(30)
+            continue
         u = d["usage"]
         c = ((u["prompt"] - u["cached"]) * price[0] + u["cached"] * price[1] + u["completion"] * price[2]) / 1e6
         spent += c
