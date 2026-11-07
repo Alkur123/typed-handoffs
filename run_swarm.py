@@ -175,6 +175,10 @@ def specs(which, seeds):
             plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, handoff=m)
                      for m in ("typed", "declared", "naive", "det")]
         return plan
+    if which == "e8b":   # PREREGISTRATION_3b
+        for s in range(31, 36):
+            plan += [dict(f=0.5, condition="helpful", seed=s, posctrl=True, handoff=m) for m in ("typed", "declared")]
+        return plan
     if which == "hinted_lobby":   # A5, run first: the cell where the monitor is predicted to MISS
         return [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
     if which == "evade":
@@ -187,7 +191,7 @@ def specs(which, seeds):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
-    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby", "e7", "e8"], required=True)
+    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby", "hinted", "hinted_lobby", "e7", "e8", "e8b"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")

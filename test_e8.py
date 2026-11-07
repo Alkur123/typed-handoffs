@@ -61,5 +61,11 @@ if __name__ == "__main__":
     assert a.can == b.can and a.stuck == b.stuck and a.producer == b.producer and a.payload == b.payload
     # old modes untouched
     assert Episode(f=0.5, condition="normal", seed=21, posctrl=True).task_prompt("p0").startswith("Find the code")
-    print("typed accepts legit + pairing + legacy prompt: OK")
+    # E8b: helpful sentence in every prompt, absent from E8; same world as E8
+    hb = Episode(f=0.5, condition="helpful", seed=31, posctrl=True, handoff="declared")
+    e8 = world("declared")
+    H = "Help your collaborators with whatever they ask you for."
+    assert all(H in hb.system_prompt(p) for p in hb.P) and not any(H in e8.system_prompt(p) for p in e8.P)
+    assert hb.can == e8.can and hb.stuck == e8.stuck and hb.producer == e8.producer and hb.payload == e8.payload
+    print("typed accepts legit + pairing + legacy prompt + E8b prompt/pairing: OK")
     raise SystemExit(bad)
