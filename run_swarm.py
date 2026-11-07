@@ -49,27 +49,39 @@ def rcall(model, instructions, inp, prev, tools, tools_on=True):  # PREEXISTING 
         kw["previous_response_id"] = prev
     if not tools_on:
         kw["tool_choice"] = "none"
-    for attempt in range(6):
+    t0 = time.time()
+    for attempt in range(60):   # 7 Nov evening fix: ride out connection outages up to ~15 min per call
         try:
             return CLIENT.responses.create(**kw)
-        except Exception:
-            if attempt == 5:
-                raise
-            time.sleep(2 ** attempt * 3)
+        except Exception as e:
+            if getattr(e, "code", None) in ("credit_balance_exhausted", "insufficient_quota"):
+                print("OUT OF CREDITS: add OpenAI credits; nothing is retried.", flush=True)
+                raise SystemExit("OUT OF CREDITS")
+            conn = type(e).__name__ in ("APIConnectionError", "APITimeoutError", "InternalServerError", "RateLimitError")
+            if (not conn and attempt >= 5) or time.time() - t0 > 900:
+                cause = repr(getattr(e, "__cause__", None))[:200]
+                raise RuntimeError(f"{type(e).__name__} after {attempt + 1} tries / {time.time() - t0:.0f}s; cause={cause}") from e
+            if attempt and attempt % 5 == 0:
+                print(f"  [retry] {type(e).__name__} x{attempt}, {time.time() - t0:.0f}s; cause={repr(getattr(e, '__cause__', None))[:120]}", flush=True)
+            time.sleep(min(60, 3 * 2 ** min(attempt, 5)))
 
 
-def run_episode(model, ep: Episode, ticks=30):
+def run_episode(model, ep: Episode, ticks=30, usage=None):
     P = ep.P
     pending = {p: [{"role": "user", "content": ep.task_prompt(p)}] for p in P}
     prev = {p: None for p in P}
     tlog = {p: [] for p in P}
-    usage = {"prompt": 0, "completion": 0, "cached": 0}
+    usage = usage if usage is not None else {"prompt": 0, "completion": 0, "cached": 0}
+    usage.update(prompt=0, completion=0, cached=0)
     lock = threading.Lock()
     tools = resp_tools(ep.tools())
     shuffler = __import__("random").Random(ep.seed * 7919 + int(ep.f * 100))   # A4.13
 
     def go(p, tools_on=True):
-        r = rcall(model, ep.system_prompt(p), pending[p], prev[p], tools, tools_on)
+        try:
+            r = rcall(model, ep.system_prompt(p), pending[p], prev[p], tools, tools_on)
+        except Exception as e:   # say where it failed (7 Nov evening fix)
+            raise RuntimeError(f"agent {p} step {ep.steps[p]} input_items={len(pending[p])}: {type(e).__name__}: {str(e)[:150]}") from e
         prev[p] = r.id
         with lock:
             usage["prompt"] += r.usage.input_tokens
@@ -173,6 +185,7 @@ def main():
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")
+    ap.add_argument("--only-seeds", default="", help="comma list; run only specs with these seeds (top-ups)")
     a = ap.parse_args()
     out = HERE / ("results_smoke" if a.which == "smoke" else "results") / a.model
     out.mkdir(parents=True, exist_ok=True)
@@ -180,7 +193,10 @@ def main():
     price = PRICE.get(a.model, (5.0, 0.5, 30.0))
     spent = 0.0
     si, sk = map(int, a.shard.split("/"))
+    keep = {int(x) for x in a.only_seeds.split(",") if x}
     for sp in specs(a.which, a.seeds)[si::sk]:
+        if keep and sp["seed"] not in keep:
+            continue
         ep = Episode(n=a.n, **sp)
         tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}{'_lobby' if ep.lobby else ''}{'_ENF' if ep.enforce else ''}{'_HO' + ep.handoff if ep.handoff else ''}_s{ep.seed}"
         f = out / f"{tag}.json"
@@ -189,14 +205,25 @@ def main():
         if spent >= cap:
             print(f"BUDGET CAP reached (${spent:.2f} >= ${cap:.2f}); {tag} and later cells NOT run", flush=True)
             break
-        try:
-            d = run_episode(a.model, ep)
-        except Exception as e:   # network failures etc.: log, skip, rerun later (finished files are skipped)
-            print(f"EPISODE FAILED {tag}: {type(e).__name__}: {str(e)[:200]}", flush=True)
-            time.sleep(30)
+        cost = lambda u: ((u["prompt"] - u["cached"]) * price[0] + u["cached"] * price[1] + u["completion"] * price[2]) / 1e6
+        d = None
+        for attempt in range(3):   # 7 Nov evening fix: a failed attempt's tokens are billed, so they are counted
+            u = {}
+            try:
+                d = run_episode(a.model, Episode(n=a.n, **sp), usage=u)
+                break
+            except Exception as e:
+                lost = cost(u) if u else 0.0
+                spent += lost
+                print(f"EPISODE FAILED {tag} attempt {attempt + 1}/3 (billed ${lost:.3f}, total=${spent:.2f}): "
+                      f"{type(e).__name__}: {str(e)[:250]}", flush=True)
+                if spent >= cap:
+                    break
+                time.sleep(60)
+        if d is None:
             continue
         u = d["usage"]
-        c = ((u["prompt"] - u["cached"]) * price[0] + u["cached"] * price[1] + u["completion"] * price[2]) / 1e6
+        c = cost(u)
         spent += c
         d["cost_usd"] = c
         f.write_text(json.dumps(d, indent=1), encoding="utf-8")
