@@ -36,7 +36,13 @@ def api_key():  # PREEXISTING (Oct 2026)
     sys.exit("OPENAI_API_KEY not found")
 
 
-CLIENT = OpenAI(api_key=api_key(), max_retries=6, timeout=120)
+# 7 Nov evening fix (openai-python issues #371, #1059): stale keep-alive sockets in long-running, highly
+# concurrent clients surface as APIConnectionError. Explicit pool limits + short keep-alive expiry.
+import httpx  # noqa: E402
+from openai import DefaultHttpxClient  # noqa: E402
+CLIENT = OpenAI(api_key=api_key(), max_retries=6, timeout=120,
+                http_client=DefaultHttpxClient(limits=httpx.Limits(max_connections=64, max_keepalive_connections=24,
+                                                                   keepalive_expiry=15.0)))
 def resp_tools(tools):
     return [{"type": "function", "name": t["name"], "description": t["description"],
              "parameters": t["parameters"], "strict": False} for t in tools]
