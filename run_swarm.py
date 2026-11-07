@@ -144,13 +144,13 @@ def specs(which, seeds):
                 plan += [dict(f=f, condition=c, seed=s, posctrl=True) for s in range(11, 16)]
         plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]
         return plan
-    if which == "e7":   # PREREGISTRATION_2
-        seeds = range(21, 26)
-        plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True, enforce=True) for s in seeds]
-        plan += [dict(f=0.5, condition="evade", seed=s, posctrl=True, enforce=True) for s in seeds]
-        plan += [dict(f=0.0, condition="normal", seed=s, posctrl=True, enforce=True) for s in seeds]
-        plan += [dict(f=0.5, condition="watched", seed=s, posctrl=True) for s in seeds]
-        plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True) for s in seeds]
+    if which == "e7":   # PREREGISTRATION_2 as amended by E7-A1: interleaved by seed so cells run concurrently
+        for s in range(21, 26):
+            plan += [dict(f=0.5, condition="normal", seed=s, posctrl=True),                            # DET-normal
+                     dict(f=0.5, condition="normal", seed=s, posctrl=True, enforce=True),               # ENF-normal
+                     dict(f=0.5, condition="normal", seed=s, posctrl=True, enforce=True, lobby=True),   # ENF-lobby
+                     dict(f=0.5, condition="informed", seed=s, posctrl=True, enforce=True),             # ENF-informed
+                     dict(f=0.5, condition="watched", seed=s, posctrl=True)]                            # WATCH
         return plan
     if which == "hinted_lobby":   # A5, run first: the cell where the monitor is predicted to MISS
         return [dict(f=0.5, condition="normal", seed=s, posctrl=True, lobby=True) for s in range(11, 16)]

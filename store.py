@@ -108,6 +108,11 @@ class Store:
         if not self.policy.may("write", p):
             raise AccessDenied(f"{p} cannot write {self.name}")
         key = self._key(p, name)
+        prev = self.objs.get(key)
+        if self.policy.enforce and prev is not None and prev.writer != p:   # E7-A1: no cross-principal overwrite
+            self.log.add(t=self.clock(), principal=p, op="blocked", store=self.name, obj=key,
+                         attr="content", writer=prev.writer, origin=prev.origin)
+            raise AccessDenied("no such file or access denied")
         self.objs[key] = Obj(content, p, self.clock(), len(content), origin)
         self.log.add(t=self.clock(), principal=p, op="write", store=self.name, obj=key,
                      attr="content", writer=p, origin=origin)
@@ -123,7 +128,11 @@ class Store:
         if obj is not None and self._blocked(p, obj):   # E7 enforce mode
             self.log.add(t=self.clock(), principal=p, op="blocked", store=self.name, obj=key,
                          attr="content", writer=obj.writer, origin=obj.origin)
-            raise AccessDenied("access denied")
+            raise AccessDenied("no such file or access denied")   # E7-A1: same text as missing
+        if obj is None and self.policy.enforce:
+            self.log.add(t=self.clock(), principal=p, op="read_denied", store=self.name, obj=key,
+                         attr="content", writer=None)
+            raise AccessDenied("no such file or access denied")
         if obj is None or not self.policy.may("read", p, obj) or \
                 (self.policy.namespaced and not key.startswith(p + "/")):
             self.log.add(t=self.clock(), principal=p, op="read_denied", store=self.name, obj=key,
