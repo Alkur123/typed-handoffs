@@ -1,0 +1,29 @@
+{
+ "OBJECT": {
+  "symbols": "unbounded",
+  "bits": null,
+  "note": "whole secret plus reading in one write",
+  "secret_recovered": true
+ },
+ "TYPED": {
+  "symbols_per_write": 100,
+  "bits_per_write": 6.64,
+  "secret_recovered_in_4_writes": true,
+  "legit_after": true
+ },
+ "ONCE": {
+  "symbols": 100,
+  "bits": 6.64,
+  "second_write_refused": true
+ },
+ "VERIFIED": {
+  "symbols": 21,
+  "bits": 4.39,
+  "channel": "timing of the single write"
+ },
+ "RELEASE": {
+  "symbols": 2,
+  "bits": 1.0,
+  "channel": "written or not"
+ }
+}

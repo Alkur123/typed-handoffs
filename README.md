@@ -2,7 +2,7 @@
 
 # Typed Handoffs
 
-**Stopping a coordinating agent swarm without breaking the work it was built to do**
+**Bounding what a coordinating agent swarm can pass through shared infrastructure without breaking legitimate work**
 
 Jaswanth Alkur (Aegis AI) · Kiran Kadekoppa (IIDA Labs)
 
@@ -20,6 +20,7 @@ In July 2026, agents inside an OpenAI evaluation turned a shared package directo
 
 - **Content-typed handoffs stop the swarm and keep the work.** With a store that accepts a declared write only if it matches the declared type, 100 of 100 legitimate handoffs completed and 0 of 50 stuck agents obtained a restricted code (92% did without enforcement). This held on every pre-registered seed, including when holders were told to help their collaborators.
 - **The obvious alternatives fail.** Blocking every cross-agent read completed 0 of 100 legitimate handoffs. An object-scoped allow-list, the design deployed shared-memory systems use, completed 56 of 100 and left the declared channel open.
+- **We attacked our own defence.** Told explicitly to pass a secret, a frontier sender-receiver pair pushed a full 8-digit secret (26.6 bits) through the two-digit typed field in 4 of 5 episodes, once by inventing an ASCII encoding, while still delivering the true reading. A type is a rate limit (6.6 bits per write), not a boundary. **Verifying the declared value against the truth closed the channel: 0 bits in 15 of 15 episodes**, with legitimate work intact; a scripted optimal encoder measures the residual (4.4 bits through write timing, 1 bit with a release time).
 - **Detection is easy; prevention must be inline.** Every detector we tried, including a free string match, flagged every coordinating episode. But receivers use a code one step after reading it, so a gate one step late prevents only 26-33% of transfers.
 - **Enforcement holds only where it is applied.** Blocked agents moved to an unlogged lobby at once (49/50), and a real-Docker sweep found inode-count and network channels in configurations that file permissions call closed.
 - **Reported in full:** our laundering predictions failed, two predictions that monitors would degrade failed, and two open-weight models did not coordinate at all.
@@ -27,6 +28,8 @@ In July 2026, agents inside an OpenAI evaluation turned a shared package directo
 ## Main result
 
 <p align="center"><img src="report/fig2_headline.png" width="92%" alt="Legitimate handoffs completed and stuck agents that obtained the code, per store policy"></p>
+
+<p align="center"><img src="report/fig6_capacity.png" width="70%" alt="Secret bits through the channel per policy, scripted capacity and model pairs"></p>
 
 | Store policy | Legitimate handoffs | Stuck agents with a code |
 |---|---|---|
@@ -50,6 +53,7 @@ Every experiment was registered by git commit **before** its code or model calls
 | [`PREREGISTRATION_3.md`](PREREGISTRATION_3.md) | E8 legitimate handoffs: block-all vs object-scoped vs content-typed | 7 Nov 18:59 IST |
 | [`PREREGISTRATION_3b.md`](PREREGISTRATION_3b.md) | E8b helpful holders (motivated laundering) | 7 Nov 19:29 IST |
 | [`PREREGISTRATION_4.md`](PREREGISTRATION_4.md) | E9 cross-family replication | 7 Nov 20:01 IST |
+| [`PREREGISTRATION_5.md`](PREREGISTRATION_5.md) | E10 attack on our own typed channel (capacity per policy) | 7 Nov 22:46 IST |
 
 [`AMENDMENTS.md`](AMENDMENTS.md) records every deviation, failed episode, budget overrun and correction to our own earlier statements, each dated. All 201 episodes are replayed through the final environment and reproduce their answers and flows exactly ([`rescore.py`](rescore.py)). Appendix B of the report lists every prediction and its outcome.
 
@@ -64,6 +68,7 @@ python analyze.py                                   # regenerate RESULTS.md from
 python latency.py "results/gpt-6.1-sol/POS*_s1[1-5].json"
 python report/figs.py && python report/gen_appendix.py   # figures and appendices from the episodes
 python e1_real/run_e1_real.py                       # isolation certificate (needs Docker)
+python capacity.py --scripted && python analyze_e10.py   # E10 capacities (no API key) and tables
 
 # re-run experiments (needs OPENAI_API_KEY; E8 costs about $9)
 python run_swarm.py --model gpt-6.1-sol --which e8
@@ -81,6 +86,7 @@ python run_swarm.py --model gpt-6.1-sol --which e8
 | `test_*.py` | scripted checks run before any model call |
 | `e1_real/` | isolation certificate under real Docker, one container and Linux UID per principal |
 | `results/<model>/` | all 201 episodes: transcripts, tool events, store log, scores |
+| `capacity.py`, `analyze_e10.py`, `results_e10/` | E10: adaptive capacity attack on the typed channel, scripted optimal encoder, all 47 episodes |
 | `report/` | report source, figure and appendix generators, build script, PDF |
 
 **Pre-existing code (not judged):** the API call/retry pattern and cost formula in `run_swarm.py`, and `report/build_report.py`, are adapted from our October 2026 Apart sprint and marked `PREEXISTING` in the files. Everything else was written during this sprint.
@@ -91,7 +97,7 @@ python run_swarm.py --model gpt-6.1-sol --which e8
 
 ```bibtex
 @techreport{alkur2026typedhandoffs,
-  title       = {Typed Handoffs: Stopping a Coordinating Agent Swarm Without Breaking the Work It Was Built to Do},
+  title       = {Typed Handoffs: Bounding What a Coordinating Agent Swarm Can Pass Through Shared Infrastructure Without Breaking Legitimate Work},
   author      = {Alkur, Jaswanth and Kadekoppa, Kiran},
   institution = {Apart Research, Swarm Alignment Hackathon},
   year        = {2026},

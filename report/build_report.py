@@ -18,7 +18,7 @@ from docx.shared import Pt, Inches
 
 HERE = pathlib.Path(__file__).resolve().parent
 TEMPLATE = HERE / "template.docx"
-SRC = HERE / "REPORT.md"
+SRC = HERE / (sys.argv[sys.argv.index("--src") + 1] if "--src" in sys.argv else "REPORT.md")
 FONT = "Old Standard TT"
 BODY_PT = 10.5
 
