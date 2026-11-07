@@ -37,12 +37,13 @@ def api_key():  # PREEXISTING (Oct 2026)
 
 
 CLIENT = OpenAI(api_key=api_key(), max_retries=6, timeout=120)
-RESP_TOOLS = [{"type": "function", "name": t["name"], "description": t["description"],
-               "parameters": t["parameters"], "strict": False} for t in TOOLS]
+def resp_tools(tools):
+    return [{"type": "function", "name": t["name"], "description": t["description"],
+             "parameters": t["parameters"], "strict": False} for t in tools]
 
 
-def rcall(model, instructions, inp, prev, tools_on=True):  # PREEXISTING pattern (Oct 2026)
-    kw = dict(model=model, instructions=instructions, input=inp, tools=RESP_TOOLS,
+def rcall(model, instructions, inp, prev, tools, tools_on=True):  # PREEXISTING pattern (Oct 2026)
+    kw = dict(model=model, instructions=instructions, input=inp, tools=tools,
               max_output_tokens=4000, parallel_tool_calls=False)
     if prev:
         kw["previous_response_id"] = prev
@@ -64,9 +65,11 @@ def run_episode(model, ep: Episode, ticks=30):
     tlog = {p: [] for p in P}
     usage = {"prompt": 0, "completion": 0, "cached": 0}
     lock = threading.Lock()
+    tools = resp_tools(ep.tools())
+    shuffler = __import__("random").Random(ep.seed * 7919 + int(ep.f * 100))   # A4.13
 
     def go(p, tools_on=True):
-        r = rcall(model, ep.system_prompt(p), pending[p], prev[p], tools_on)
+        r = rcall(model, ep.system_prompt(p), pending[p], prev[p], tools, tools_on)
         prev[p] = r.id
         with lock:
             usage["prompt"] += r.usage.input_tokens
@@ -80,6 +83,7 @@ def run_episode(model, ep: Episode, ticks=30):
             order = [p for p in P if p in active]
             if not order:
                 break
+            shuffler.shuffle(order)
             resps = dict(zip(order, pool.map(go, order)))
             for p in order:  # apply in agent-index order: deterministic store state
                 r = resps[p]
@@ -123,21 +127,28 @@ def run_episode(model, ep: Episode, ticks=30):
 
 
 def specs(which, seeds):
+    """A4.16 cell plan. The grid is ordered so a budget cut removes the least important cells last-in."""
     if which == "smoke":
         return [dict(f=0.5, condition="normal", seed=999, posctrl=True)]
     if which == "posctrl":
-        return [dict(f=0.5, condition="normal", seed=s, posctrl=True) for s in range(101, 101 + seeds)]
+        return [dict(f=0.5, condition="normal", seed=s, posctrl=True) for s in range(101, 105)]
+    plan = []
     if which == "grid":
-        order = [(0.0, "normal"), (0.5, "normal"), (0.0, "adversarial"), (0.5, "adversarial"),
-                 (0.10, "normal"), (0.25, "normal"), (0.10, "adversarial"), (0.25, "adversarial")]
-        return [dict(f=f, condition=c, seed=s) for f, c in order for s in range(1, seeds + 1)]
+        for f, k in ((0.5, 10), (0.0, 12), (0.10, 4), (0.25, 4)):
+            for s in range(1, k + 1):
+                plan += [dict(f=f, condition="normal", seed=s), dict(f=f, condition="falsify", seed=s)]
+        return plan
+    if which == "evade":
+        return [dict(f=0.5, condition="evade", seed=s) for s in range(1, 7)]
+    if which == "lobby":
+        return [dict(f=0.5, condition="normal", seed=s, lobby=True) for s in range(1, 7)]
     raise SystemExit(which)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
-    ap.add_argument("--which", choices=["smoke", "posctrl", "grid"], required=True)
+    ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
     a = ap.parse_args()
@@ -148,7 +159,7 @@ def main():
     spent = 0.0
     for sp in specs(a.which, a.seeds):
         ep = Episode(n=a.n, **sp)
-        tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}_s{ep.seed}"
+        tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}{'_lobby' if ep.lobby else ''}_s{ep.seed}"
         f = out / f"{tag}.json"
         if f.exists():
             continue
