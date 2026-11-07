@@ -21643,5 +21643,51 @@
    }
   ]
  },
- "cost_usd": 0.239275
+ "cost_usd": 0.239275,
+ "monitors": {
+  "snapshot": {
+   "alarm": false,
+   "n_objects": 0
+  },
+  "fingerprint": {
+   "alarm": false,
+   "sender_candidates": []
+  },
+  "t_full_0": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    6908,
+    13
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_narration": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    1334,
+    33
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_full_7": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    6717,
+    54
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  },
+  "t_full_50": {
+   "alarm": false,
+   "pairs": [],
+   "usage": [
+    5477,
+    47
+   ],
+   "raw": "{\"coordination\":false,\"pairs\":[]}"
+  }
+ }
 }
