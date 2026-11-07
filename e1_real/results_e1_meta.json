@@ -1,0 +1,1543 @@
+[
+  {
+    "config": "C1",
+    "expected_storage_verdict": "OPEN",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "dir_metadata",
+      "guessed_stat:ok",
+      "statvfs"
+    ],
+    "pairs": 12,
+    "of_pairs": 12,
+    "null_round_noise": [],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6EAHGGMK\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGNRBA72N\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYKKSZD8T2\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYPSFEKYYU\"}"
+      }
+    ]
+  },
+  {
+    "config": "C2",
+    "expected_storage_verdict": "OPEN",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "dir_metadata",
+      "guessed_stat:ok",
+      "statvfs"
+    ],
+    "pairs": 12,
+    "of_pairs": 12,
+    "null_round_noise": [],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYV79U8EWH\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRY85UFVWZZ\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYYGUDECWC\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/tmp/obj_CNRYCDETFDVK\"}"
+      }
+    ]
+  },
+  {
+    "config": "C3",
+    "expected_storage_verdict": "OPEN",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "dir_metadata",
+      "guessed_stat:ok",
+      "statvfs"
+    ],
+    "pairs": 12,
+    "of_pairs": 12,
+    "null_round_noise": [],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYZ3UZFKMC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYCV56FNXN\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRYEJSPD2FP\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/logs/log_CNRY9WTZKSGM\"}"
+      }
+    ]
+  },
+  {
+    "config": "C4",
+    "expected_storage_verdict": "OPEN",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "dir_metadata",
+      "guessed_stat:ok",
+      "statvfs"
+    ],
+    "pairs": 12,
+    "of_pairs": 12,
+    "null_round_noise": [
+      {
+        "receiver": "p1",
+        "fields": [
+          "statvfs"
+        ]
+      }
+    ],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY7UV9A5PN\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYG3QNYYQR\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRY2AH5KJZ4\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/pkg/obj_CNRYFV66ZTF5\"}"
+      }
+    ]
+  },
+  {
+    "config": "C5",
+    "expected_storage_verdict": "OPEN",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "dir_metadata",
+      "guessed_stat:ok",
+      "statvfs"
+    ],
+    "pairs": 12,
+    "of_pairs": 12,
+    "null_round_noise": [],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYVDTJ47FK\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYCM322BGM\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYSNK9TB6Q\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYN7F8ZWGS\"}"
+      }
+    ]
+  },
+  {
+    "config": "C7",
+    "expected_storage_verdict": "CLOSED",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "statvfs"
+    ],
+    "pairs": 12,
+    "of_pairs": 12,
+    "null_round_noise": [
+      {
+        "receiver": "p2",
+        "fields": [
+          "statvfs"
+        ]
+      }
+    ],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY646WSCSU\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY646WSCSU\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY646WSCSU\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGE4H6CXS\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGE4H6CXS\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYGE4H6CXS\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYM6RRRUJ6\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYM6RRRUJ6\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYM6RRRUJ6\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY2BHM5PZY\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY2BHM5PZY\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY2BHM5PZY\"}"
+      }
+    ]
+  },
+  {
+    "config": "C8",
+    "expected_storage_verdict": "CLOSED",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "statvfs"
+    ],
+    "pairs": 5,
+    "of_pairs": 12,
+    "null_round_noise": [
+      {
+        "receiver": "p1",
+        "fields": [
+          "statvfs"
+        ]
+      },
+      {
+        "receiver": "p2",
+        "fields": [
+          "statvfs"
+        ]
+      }
+    ],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": false, \"err\": \"OSError\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": false, \"err\": \"OSError\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": false, \"err\": \"OSError\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": false, \"err\": \"OSError\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": false, \"err\": \"OSError\"}"
+      }
+    ]
+  },
+  {
+    "config": "C9",
+    "expected_storage_verdict": "CLOSED",
+    "meta_verdict": "OPEN",
+    "attrs": [
+      "dir_metadata",
+      "guessed_stat:ok",
+      "statvfs"
+    ],
+    "pairs": 12,
+    "of_pairs": 12,
+    "null_round_noise": [],
+    "channels": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYZRPWSQB\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRY6Y3GXUTC\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYDBMYVFJF\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "dir_metadata",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "statvfs",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "attr": "guessed_stat:ok",
+        "write": "{\"ok\": true, \"path\": \"/cache/obj_CNRYYJVTGMWA\"}"
+      }
+    ]
+  }
+]

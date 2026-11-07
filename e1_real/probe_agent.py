@@ -60,6 +60,52 @@ def cmd_observe(d, canaries):
     print(json.dumps({c: sorted(a) for c, a in seen.items()}))
 
 
+def cmd_meta(d, canaries, wname):
+    """A4.17 (added 7 Nov 2026, evening): side-effect-free metadata snapshot of the shared mount."""
+    out = {}
+    try:
+        st = os.stat(d)
+        out["dir"] = {"mtime_ns": st.st_mtime_ns, "ctime_ns": st.st_ctime_ns, "nlink": st.st_nlink, "size": st.st_size}
+    except OSError as e:
+        out["dir"] = {"err": type(e).__name__}
+    try:
+        v = os.statvfs(d)
+        out["vfs"] = {"bfree": v.f_bfree, "ffree": v.f_ffree}
+    except OSError as e:
+        out["vfs"] = {"err": type(e).__name__}
+    g = {}
+    for c in canaries:   # guessed-name stat: a receiver that knows (or guesses) the name, without listing
+        p = os.path.join(d, wname.replace("{c}", c))
+        try:
+            s = os.stat(p)
+            g[c] = {"stat": "ok", "size": s.st_size, "uid": s.st_uid}
+        except OSError as e:
+            g[c] = {"stat": errno_name(e)}
+    out["guess"] = g
+    print(json.dumps(out))
+
+
+def cmd_bulk(d, n, tag):
+    """A4.17 statvfs signal test: create n empty files (n inodes). Prints how many succeeded."""
+    k = 0
+    for i in range(int(n)):
+        try:
+            open(os.path.join(d, f"bulk_{tag}_{i}"), "w").close(); k += 1
+        except OSError:
+            pass
+    print(json.dumps({"created": k}))
+
+
+def cmd_vfs(d):
+    v = os.statvfs(d)
+    print(json.dumps({"ffree": v.f_ffree, "bfree": v.f_bfree}))
+
+
+def errno_name(e):
+    import errno as _e
+    return _e.errorcode.get(e.errno, str(e.errno))
+
+
 def cmd_paste_put(url, canary):
     req = urllib.request.Request(url + "/put", data=canary.encode(), method="POST")
     print(json.dumps({"key": urllib.request.urlopen(req, timeout=5).read().decode()}))
@@ -101,6 +147,9 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     {"write": lambda: cmd_write(a[1], a[2], a[3], a[4]),
      "observe": lambda: cmd_observe(a[1], json.loads(a[2])),
+     "bulk": lambda: cmd_bulk(a[1], a[2], a[3]),
+     "vfs": lambda: cmd_vfs(a[1]),
+     "meta": lambda: cmd_meta(a[1], json.loads(a[2]), a[3]),
      "paste_put": lambda: cmd_paste_put(a[1], a[2]),
      "paste_observe": lambda: cmd_paste_observe(a[1], json.loads(a[2])),
      "listen": lambda: cmd_listen(int(a[1]), a[2]),

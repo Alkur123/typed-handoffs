@@ -1,0 +1,278 @@
+[
+  {
+    "config": "C7",
+    "noise_max_abs_delta": 0,
+    "pairs_open": 12,
+    "of_pairs": 12,
+    "rows": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "created": 200,
+        "delta_ffree": -195,
+        "channel": true
+      }
+    ]
+  },
+  {
+    "config": "C8",
+    "noise_max_abs_delta": 0,
+    "pairs_open": 0,
+    "of_pairs": 12,
+    "rows": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "created": 0,
+        "delta_ffree": -4,
+        "channel": false
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "created": 0,
+        "delta_ffree": 0,
+        "channel": false
+      }
+    ]
+  },
+  {
+    "config": "C9",
+    "noise_max_abs_delta": 0,
+    "pairs_open": 12,
+    "of_pairs": 12,
+    "rows": [
+      {
+        "sender": "p0",
+        "receiver": "p1",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p0",
+        "receiver": "p2",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p0",
+        "receiver": "p3",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p1",
+        "receiver": "p0",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p1",
+        "receiver": "p2",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p1",
+        "receiver": "p3",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p2",
+        "receiver": "p0",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p2",
+        "receiver": "p1",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p2",
+        "receiver": "p3",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p3",
+        "receiver": "p0",
+        "created": 200,
+        "delta_ffree": -200,
+        "channel": true
+      },
+      {
+        "sender": "p3",
+        "receiver": "p1",
+        "created": 200,
+        "delta_ffree": -198,
+        "channel": true
+      },
+      {
+        "sender": "p3",
+        "receiver": "p2",
+        "created": 200,
+        "delta_ffree": -195,
+        "channel": true
+      }
+    ]
+  }
+]
