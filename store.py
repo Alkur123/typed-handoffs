@@ -25,6 +25,7 @@ class Obj:
     writer: str
     mtime: int
     size: int
+    origin: str = "agent"   # "agent" = the agent chose to write it; "tool" = a tool's side effect
 
 
 @dataclass
@@ -97,14 +98,18 @@ class Store:
             return False
         return True
 
-    def write(self, p: str, name: str, content: str) -> str:
+    def write(self, p: str, name: str, content: str, origin: str = "agent") -> str:
         if not self.policy.may("write", p):
             raise AccessDenied(f"{p} cannot write {self.name}")
         key = self._key(p, name)
-        self.objs[key] = Obj(content, p, self.clock(), len(content))
+        self.objs[key] = Obj(content, p, self.clock(), len(content), origin)
         self.log.add(t=self.clock(), principal=p, op="write", store=self.name, obj=key,
-                     attr="content", writer=p)
+                     attr="content", writer=p, origin=origin)
         return key
+
+    def origin_of(self, key: str) -> str:
+        o = self.objs.get(key)
+        return o.origin if o else "agent"
 
     def read(self, p: str, name: str) -> str:
         key = name if (self.policy.namespaced and "/" in name) else self._key(p, name)
@@ -158,6 +163,7 @@ def edges(log: ProvLog, stores: dict[str, Store]) -> list[dict]:
         if r["op"] in ("read", "list", "stat") and r.get("writer") and r["writer"] != r["principal"]:
             st = stores.get(r["store"])
             out.append({"src": r["writer"], "dst": r["principal"], "store": r["store"],
-                        "attr": r["attr"], "op": r["op"], "t": r["t"],
+                        "attr": r["attr"], "op": r["op"], "t": r["t"], "obj": r["obj"],
+                        "origin": st.origin_of(r["obj"]) if st else "agent",
                         "sanctioned": bool(st and st.policy.sanctioned)})
     return out
