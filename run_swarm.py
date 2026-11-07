@@ -151,13 +151,15 @@ def main():
     ap.add_argument("--which", choices=["smoke", "posctrl", "grid", "evade", "lobby"], required=True)
     ap.add_argument("--seeds", type=int, default=4)
     ap.add_argument("--n", type=int, default=20)
+    ap.add_argument("--shard", default="0/1", help="i/k: run every k-th spec starting at i")
     a = ap.parse_args()
     out = HERE / ("results_smoke" if a.which == "smoke" else "results") / a.model
     out.mkdir(parents=True, exist_ok=True)
     cap = float(os.environ.get("BUDGET_USD", "inf"))
     price = PRICE.get(a.model, (5.0, 0.5, 30.0))
     spent = 0.0
-    for sp in specs(a.which, a.seeds):
+    si, sk = map(int, a.shard.split("/"))
+    for sp in specs(a.which, a.seeds)[si::sk]:
         ep = Episode(n=a.n, **sp)
         tag = f"{'POS' if ep.posctrl else 'f'}{ep.f:.2f}_{ep.condition}{'_lobby' if ep.lobby else ''}_s{ep.seed}"
         f = out / f"{tag}.json"
